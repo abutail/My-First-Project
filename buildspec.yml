@@ -1,0 +1,24 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      # Install dependencies needed for running tests
+      - npm install
+
+      # Upgrade AWS CLI to the latest version
+      - pip install --upgrade awscli
+  pre_build:
+    commands:
+      # Discover and run unit tests in the 'tests' directory
+      - npm test
+artifacts:
+  type: zip
+  files:
+    - README.md
+    - package.json
+    - app.js
+    - appspec.yml
+    - scripts/*
+    - node_modules/**/*
+    - public/**/*
